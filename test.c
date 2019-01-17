@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <assert.h>
+#include <stdint.h>
 struct timespec diff(struct timespec start, struct timespec end) {
   struct timespec temp;
   if ((end.tv_nsec-start.tv_nsec)<0) {
@@ -59,10 +60,12 @@ int bitCount(int x)
     return Sum;
 }
 
-void main()
+void main(int argc, char *argv[])
 {
 	srand(time(NULL));
 	int r = rand();
+	int stride=atoi(argv[1]);
+	//printf("%d\n",stride);
 	//double t1,t2;
 	//struct timespec start,end;
 	//double time_used;
@@ -72,16 +75,22 @@ void main()
         //    fprintf(stderr, "error: file open failed in data.txt.\n");
         //    fclose(fp);
         //}
-	for(idx=0;idx<1000;idx++){
-	    r=rand();
+	int ans=0;
+	for(idx=0;idx<10000000;idx++){
+	    //r=(rand()<<1)+rand()%10;
+	    //printf("%d\n",r);
 	    //assert(bitCount1(r)==bitCount3(r));
 	    //clock_gettime(CLOCK_MONOTONIC, &start);
-	    bitCount3(r);
+	    //ans+=bitCount4((int32_t)(idx*stride));
+	    ans+=bitCount3((int32_t)(r));
 	    //clock_gettime(CLOCK_MONOTONIC, &end);
 	    //struct timespec temp = diff(start, end);
 	    //time_used = temp.tv_sec*1000000000 +(double) temp.tv_nsec;
 	    //fprintf(fp, "%d %f ns\n",idx,time_used);
 	}
+	//printf("%d",ans%2);
+	volatile int prevent=ans;
+	//printf("%d",ans);
 	//fclose(fp);
 	return;
 }

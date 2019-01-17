@@ -1,0 +1,10 @@
+# started on Thu Jan 17 14:09:15 2019
+
+
+ Performance counter stats for './test_256 12000':
+
+        50,180,399      L1-dcache-loads                                             
+            10,522      L1-dcache-load-misses     #    0.02% of all L1-dcache hits  
+
+       0.037480785 seconds time elapsed
+
